@@ -1,55 +1,44 @@
-package objetos;
-
-
-import java.util.ArrayList;
-import objetos.Persona;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package objetos;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author Albert
  */
 public class Alumno extends Persona{
+    public ArrayList<Nota> lNota;
+    private double notaMedia;
 
-    public Alumno(int curso, double notaMedia, String nom, int edat, double altura, String dni) {
-        super(nom, edat, altura, dni);
-        this.curso = curso;
-        this.notaMedia = notaMedia;
-        notas= new ArrayList<>();
+    public Alumno(String nom, int edad, String dni) {
+        super(nom, edad, dni);
+        lNota= new ArrayList();
+        notaMedia=0;
     }
     
-    private int curso;
-    private double notaMedia;
-    public ArrayList<Asignatura> notas;
-
-    public int getCurso() {
-        return curso;
+    public void listaNotaAlumno(){
+        for(Nota n: lNota)
+            System.out.println(n);
     }
 
-    public double getNotaMedia() {
-        return notaMedia;
+    public void calcularNotaMedia(){
+       double suma=0;
+         for(Nota n: lNota)
+             suma+=n.getNotaAsig();
+         
+         notaMedia=suma/lNota.size();
+           
     }
-
-    public void setCurso(int curso) {
-        this.curso = curso;
-    }
-
-    public void setNotaMedia(double notaMedia) {
-        this.notaMedia = notaMedia;
-    }
-
     @Override
     public String toString() {
-        return "Alumno{" +"Nom="+this.getNom()+ " curso=" + curso + ", notaMedia=" + notaMedia + '}';
+        return "Alumno "+ this.getNom()+" "+this.getDni()+" "+this.getEdad()+" nota media:"+notaMedia;
     }
 
-
-    
-    
+  
     
 }
